@@ -1,0 +1,1159 @@
+{
+	"info": {
+		"_postman_id": "smk-negeri-4-gallery-api",
+		"name": "SMK Negeri 4 Gallery API",
+		"description": "Complete API collection for SMK Negeri 4 School Gallery Management System",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12345"
+	},
+	"item": [
+		{
+			"name": "🔐 Authentication",
+			"item": [
+				{
+					"name": "User Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"onya@example.com\",\n    \"password\": \"123\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/login",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "login"]
+						}
+					}
+				},
+				{
+					"name": "Admin Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"admin\",\n    \"password\": \"123\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/admin/login",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "admin", "login"]
+						}
+					}
+				},
+				{
+					"name": "User Register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"John Doe\",\n    \"email\": \"john@example.com\",\n    \"password\": \"password123\",\n    \"password_confirmation\": \"password123\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/register",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "register"]
+						}
+					}
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{user_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/logout",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "logout"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "👤 User Profile",
+			"item": [
+				{
+					"name": "Get Profile",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{user_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/profile",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "profile"]
+						}
+					}
+				},
+				{
+					"name": "Update Profile",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{user_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"John Doe Updated\",\n    \"email\": \"john.updated@example.com\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/profile",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "profile"]
+						}
+					}
+				},
+				{
+					"name": "Update Password",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{user_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"current_password\": \"password123\",\n    \"new_password\": \"newpassword123\",\n    \"new_password_confirmation\": \"newpassword123\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/profile/password",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "profile", "password"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "🖼️ Public Gallery",
+			"item": [
+				{
+					"name": "Get Gallery List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/gallery?per_page=12&search=&category=",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "gallery"],
+							"query": [
+								{
+									"key": "per_page",
+									"value": "12"
+								},
+								{
+									"key": "search",
+									"value": ""
+								},
+								{
+									"key": "category",
+									"value": ""
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Get Gallery Detail",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/gallery/1",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "gallery", "1"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "📰 Public Content",
+			"item": [
+				{
+					"name": "Get Content List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/content",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "content"]
+						}
+					}
+				},
+				{
+					"name": "Get Content Detail",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/content/1",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "content", "1"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "📅 Public Agenda",
+			"item": [
+				{
+					"name": "Get Agenda List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/agenda",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "agenda"]
+						}
+					}
+				},
+				{
+					"name": "Get Agenda Detail",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/agenda/1",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "agenda", "1"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "ℹ️ Public Information",
+			"item": [
+				{
+					"name": "Get Information List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/information",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "information"]
+						}
+					}
+				},
+				{
+					"name": "Get Information Detail",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/information/1",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "information", "1"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "🏫 School Info",
+			"item": [
+				{
+					"name": "Get School Profile",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/school/profile",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "school", "profile"]
+						}
+					}
+				},
+				{
+					"name": "Get School Statistics",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/school/statistics",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "school", "statistics"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "🔒 Admin Dashboard",
+			"item": [
+				{
+					"name": "Get Dashboard",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{admin_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/admin/dashboard",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "admin", "dashboard"]
+						}
+					}
+				},
+				{
+					"name": "Get Statistics",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{admin_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/admin/statistics",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "admin", "statistics"]
+						}
+					}
+				},
+				{
+					"name": "Get Recent Activities",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{admin_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/admin/recent-activities",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "admin", "recent-activities"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "👥 Admin User Management",
+			"item": [
+				{
+					"name": "Get Users List",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{admin_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/admin/users",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "admin", "users"]
+						}
+					}
+				},
+				{
+					"name": "Create User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{admin_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"New User\",\n    \"email\": \"newuser@example.com\",\n    \"password\": \"password123\",\n    \"password_confirmation\": \"password123\",\n    \"role\": \"user\",\n    \"status\": \"active\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/admin/users",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "admin", "users"]
+						}
+					}
+				},
+				{
+					"name": "Get User Detail",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{admin_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/admin/users/1",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "admin", "users", "1"]
+						}
+					}
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{admin_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Updated User\",\n    \"email\": \"updated@example.com\",\n    \"role\": \"admin\",\n    \"status\": \"active\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/admin/users/1",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "admin", "users", "1"]
+						}
+					}
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{admin_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/admin/users/1",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "admin", "users", "1"]
+						}
+					}
+				},
+				{
+					"name": "Toggle User Status",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{admin_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/admin/users/1/toggle-status",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "admin", "users", "1", "toggle-status"]
+						}
+					}
+				},
+				{
+					"name": "Change User Role",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{admin_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"role\": \"admin\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/admin/users/1/change-role",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "admin", "users", "1", "change-role"]
+						}
+					}
+				},
+				{
+					"name": "Get User Statistics",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{admin_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/admin/users/statistics",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "admin", "users", "statistics"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "🖼️ Admin Gallery Management",
+			"item": [
+				{
+					"name": "Get Gallery List",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{admin_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/admin/gallery",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "admin", "gallery"]
+						}
+					}
+				},
+				{
+					"name": "Create Gallery Item",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{admin_token}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "judul",
+									"value": "Kegiatan Sekolah",
+									"type": "text"
+								},
+								{
+									"key": "deskripsi",
+									"value": "Deskripsi kegiatan sekolah",
+									"type": "text"
+								},
+								{
+									"key": "gambar",
+									"type": "file",
+									"src": []
+								},
+								{
+									"key": "kategori",
+									"value": "kegiatan",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "active",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/admin/gallery",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "admin", "gallery"]
+						}
+					}
+				},
+				{
+					"name": "Update Gallery Item",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{admin_token}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "judul",
+									"value": "Kegiatan Sekolah Updated",
+									"type": "text"
+								},
+								{
+									"key": "deskripsi",
+									"value": "Deskripsi yang diupdate",
+									"type": "text"
+								},
+								{
+									"key": "gambar",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/admin/gallery/1",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "admin", "gallery", "1"]
+						}
+					}
+				},
+				{
+					"name": "Delete Gallery Item",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{admin_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/admin/gallery/1",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "admin", "gallery", "1"]
+						}
+					}
+				},
+				{
+					"name": "Upload Image",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{admin_token}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/admin/gallery/upload",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "admin", "gallery", "upload"]
+						}
+					}
+				},
+				{
+					"name": "Get Gallery Statistics",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{admin_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/admin/gallery/statistics",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "admin", "gallery", "statistics"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "📚 Admin Content Management",
+			"item": [
+				{
+					"name": "Get Content List",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{admin_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/admin/content",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "admin", "content"]
+						}
+					}
+				},
+				{
+					"name": "Create Content",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{admin_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Judul Konten\",\n    \"content\": \"Isi konten yang panjang\",\n    \"type\": \"article\",\n    \"status\": \"active\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/admin/content",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "admin", "content"]
+						}
+					}
+				},
+				{
+					"name": "Update Content",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{admin_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Judul Konten Updated\",\n    \"content\": \"Isi konten yang diupdate\",\n    \"status\": \"active\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/admin/content/1",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "admin", "content", "1"]
+						}
+					}
+				},
+				{
+					"name": "Delete Content",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{admin_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/admin/content/1",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "admin", "content", "1"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "📅 Admin Agenda Management",
+			"item": [
+				{
+					"name": "Get Agenda List",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{admin_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/admin/agenda",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "admin", "agenda"]
+						}
+					}
+				},
+				{
+					"name": "Create Agenda",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{admin_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Rapat Guru\",\n    \"description\": \"Rapat bulanan guru\",\n    \"date\": \"2024-01-20\",\n    \"time\": \"08:00\",\n    \"location\": \"Aula Sekolah\",\n    \"status\": \"active\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/admin/agenda",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "admin", "agenda"]
+						}
+					}
+				},
+				{
+					"name": "Update Agenda",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{admin_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Rapat Guru Updated\",\n    \"description\": \"Rapat bulanan guru yang diupdate\",\n    \"date\": \"2024-01-25\",\n    \"time\": \"09:00\",\n    \"location\": \"Ruang Meeting\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/admin/agenda/1",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "admin", "agenda", "1"]
+						}
+					}
+				},
+				{
+					"name": "Delete Agenda",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{admin_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/admin/agenda/1",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "admin", "agenda", "1"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "ℹ️ Admin Information Management",
+			"item": [
+				{
+					"name": "Get Information List",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{admin_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/admin/information",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "admin", "information"]
+						}
+					}
+				},
+				{
+					"name": "Create Information",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{admin_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Pengumuman Penting\",\n    \"content\": \"Isi pengumuman yang penting\",\n    \"category\": \"pengumuman\",\n    \"status\": \"active\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/admin/information",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "admin", "information"]
+						}
+					}
+				},
+				{
+					"name": "Update Information",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{admin_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Pengumuman Penting Updated\",\n    \"content\": \"Isi pengumuman yang diupdate\",\n    \"category\": \"pengumuman\",\n    \"status\": \"active\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/admin/information/1",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "admin", "information", "1"]
+						}
+					}
+				},
+				{
+					"name": "Delete Information",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{admin_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/admin/information/1",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "admin", "information", "1"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "⚙️ Admin Settings",
+			"item": [
+				{
+					"name": "Get Settings",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{admin_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/admin/settings",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "admin", "settings"]
+						}
+					}
+				},
+				{
+					"name": "Update Settings",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{admin_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"school_name\": \"SMK Negeri 4 Kota Bogor\",\n    \"school_address\": \"Jl. Raya Tajur, Kp. Buntar, Kota Bogor\",\n    \"school_phone\": \"+62 251 123456\",\n    \"school_email\": \"info@smkn4.sch.id\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/admin/settings",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "admin", "settings"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "📊 Admin Reports",
+			"item": [
+				{
+					"name": "Get Reports",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{admin_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/admin/reports",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "admin", "reports"]
+						}
+					}
+				},
+				{
+					"name": "Generate Report",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{admin_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"type\": \"user_activity\",\n    \"date_from\": \"2024-01-01\",\n    \"date_to\": \"2024-01-31\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/admin/reports/generate",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "admin", "reports", "generate"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "🔧 System & Health",
+			"item": [
+				{
+					"name": "API Health Check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/health",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "health"]
+						}
+					}
+				},
+				{
+					"name": "API Documentation",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/documentation",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "documentation"]
+						}
+					}
+				},
+				{
+					"name": "System Health (Admin)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{admin_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/admin/system/health",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "admin", "system", "health"]
+						}
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://127.0.0.1:8000",
+			"type": "string"
+		},
+		{
+			"key": "user_token",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "admin_token",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
